@@ -1,6 +1,9 @@
 
+//Freely adapted from https://www.codecademy.com/courses/web-intermediate-en-jfhjJ/0/1
+//integrates clickable images, better design, bigger integgers, multiple operations and uikit css
 
-//How it works :
+
+//HOW IT WORKS :
 
 // 1/ the calculator receives inputs from the buttons with .click() listeners.
 
@@ -12,49 +15,31 @@
 
 // When "=" is clicked, it takes the number, the newnumber, and the operator, and performs the operation.
 
-//testNumLength function constrols the length so that the content in the div doesn't overflow.
+
 $(function() {
-//    var testNumLength = function(number) {
-//        if (number.length > 9) {
-//            totaldiv.text(number.substr(number.length-9,9));
-//            if (number.length > 15) {
-//                number = "";
-//                totaldiv.text("too big");
-//            }
-//        }
-//    };
     var number = "";                        //declare number as empty strings
     var newnumber = "";                     //declare newnumber as empty strings
     var operator = "";                      //declare operator as empty strings
     var totaldiv = $("#total");             //totaldiv variable to change the text of the $("#total")
     totaldiv.text("0");                     //set the .text() of totaldiv to "0"
 
-    //HOW IT WORKS : .click() listener to the #numbers a
-    //takes the .text() of the button, append that to number,
-    //set the .text() of totaldiv to number,
-    //call testNumLength, passing in number as the parameter.
-
-       $('.numbers a img').click(function(){
-        number += $(this).attr('alt');          //takes the alt attribute of the number img and assigns it to var number
-        totaldiv.text(number);                            //Sets the .text() of totaldiv to number.
-        //testNumLength(number);                               //test length
+    $('.numbers a img').click(function(){
+    number += $(this).attr('alt');          //takes the alt attribute of the number img and assigns it to var number
+    totaldiv.text(number);                  //Sets the .text() of totaldiv to number.
     });
 
 
     //Take the .text() of the button, and set the operator variable to that.
 
-    $(".operators a img").click(function(){              //click() to handle all of the #operators
-        operator = $(this).attr('alt');                  //html attr alt of the button
-        newnumber = number;                              //set the value of newnumber to number
-        number = "";                                     //set number to ""
-        totaldiv.text(operator);                         //set the operator text
+    $(".operators a img").click(function(){       //click() to handle all of the #operators
+        operator = $(this).attr('alt');           //takes the value of the alt attribute
+        newnumber = number;                       //set the value of newnumber to number
+        number = "";                              //set number to ""
+        totaldiv.text(operator);                  //displays the operator alt as text
     });
-    $("#clear,#clearall").click(function(){             //reinitialise number #total
+    $("#clear,#clearall").click(function(){       //reinitialise number #total
         number = "";
         totaldiv.text("0");
-        if ($(this).attr("id") === "clearall") {
-            newnumber = "";
-        }
     });
 
     $("#equals").click(function(){
@@ -64,14 +49,11 @@ $(function() {
             number = (parseInt(newnumber) - parseInt(number)).toString();
         } else if (operator === "/"){
             number = (parseInt(newnumber) / parseInt(number)).toString();
-        } else if (operator === "*"){
+        } else if (operator === "x"){
             number = (parseInt(newnumber) * parseInt(number)).toString();
         }
         totaldiv.text(number);
-        //testNumLength(number);
-        //number = "";
-        //newnumber = "";
-        number += $totaldiv.text(number)
+        number += $totaldiv.text(number) //set total.div.text to number to allow next operations
         newnumber = "";
     });
 });
