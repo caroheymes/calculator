@@ -34,25 +34,22 @@ $(function() {
     //set the .text() of totaldiv to number,
     //call testNumLength, passing in number as the parameter.
 
-
-    //$(".numbers").not("#clear,#clearall").click(function(){       //exclude #clear #clearall
-    //$(".number img").attr('alt')
        $('.numbers a img').click(function(){
-        number += $(this).attr('alt');                                   //takes the .html() of the number button and assigns it to var number
-        totaldiv.text(number);                                      //Sets the .text() of totaldiv to number.
-        testNumLength(number);                                      //test length
+        number += $(this).attr('alt');          //takes the alt attribute of the number img and assigns it to var number
+        totaldiv.text(number);                            //Sets the .text() of totaldiv to number.
+        //testNumLength(number);                               //test length
     });
 
 
     //Take the .text() of the button, and set the operator variable to that.
 
-    $(".operators a img").click(function(){              //click() to handle all of the #operators except for #equals button
-        operator = $(this).attr('alt');                                  //html of the button
-        newnumber = number;                                         //set the value of newnumber to number
-        number = "";                                                //set number to ""
-        totaldiv.text(operator);                                    //set the operator text
+    $(".operators a img").click(function(){              //click() to handle all of the #operators
+        operator = $(this).attr('alt');                  //html attr alt of the button
+        newnumber = number;                              //set the value of newnumber to number
+        number = "";                                     //set number to ""
+        totaldiv.text(operator);                         //set the operator text
     });
-    $("#clear,#clearall").click(function(){                         //reinitialise number #total
+    $("#clear,#clearall").click(function(){             //reinitialise number #total
         number = "";
         totaldiv.text("0");
         if ($(this).attr("id") === "clearall") {
@@ -62,13 +59,13 @@ $(function() {
 
     $("#equals").click(function(){
         if (operator === "+"){
-			number = (parseInt(number) + parseInt(newnumber)).toString(); //Number.parseInt() converts to integer; base 10 - optionnal
+			number = (parseInt(number) + parseInt(newnumber)).toString(); //Number.parseInt() converts to integer;
         } else if (operator === "-"){
-            number = (parseInt(newnumber, 10) - parseInt(number,10)).toString(10);
+            number = (parseInt(newnumber) - parseInt(number)).toString();
         } else if (operator === "/"){
-            number = (parseInt(newnumber, 10) / parseInt(number,10)).toString(10);
+            number = (parseInt(newnumber) / parseInt(number)).toString();
         } else if (operator === "*"){
-            number = (parseInt(newnumber, 10) * parseInt(number,10)).toString(10);
+            number = (parseInt(newnumber) * parseInt(number)).toString();
         }
         totaldiv.text(number);
         //testNumLength(number);
